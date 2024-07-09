@@ -68,7 +68,7 @@ export async function CarCard({ index, slug }: CarCardProps) {
       </CardHeader>
       <CardContent>
         <div className="flex items-center justify-center py-4">
-        <img src="/image-placeholder.jpg" alt={''} className='w-full h-25'/>
+        <img src="/image-placeholder.jpg" alt={''} className='h-25 w-full'/>
         </div>
         <div className="mx-auto mt-8 flex max-w-[220px] items-center justify-between gap-x-1.5">
           <p className="text-sm text-neutral-600">{transmission}</p>

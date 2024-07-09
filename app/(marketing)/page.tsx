@@ -118,7 +118,7 @@ function BodyStyleCarExplorer() {
                         {name}
                       </span>
                     </div>
-                    <img src="/image-placeholder.jpg" alt={''} className='w-full h-full'/>
+                    <img src="/image-placeholder.jpg" alt={''} className='size-full'/>
                     {/* <CloudinaryImage
                       priority
                       src={imageUrl}
@@ -166,7 +166,7 @@ async function DestinationCarExplorer() {
             >
               <div className="size-full group-hover:[&_img]:opacity-50">
                 <AspectRatio ratio={1 / 1}>
-                  <img src="/image-placeholder.jpg" alt={''} className='w-full h-full'/>
+                  <img src="/image-placeholder.jpg" alt={''} className='size-full'/>
                   {/* <CloudinaryImage
                     src={image_url}
                     alt={name}
