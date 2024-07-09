@@ -21,6 +21,7 @@ import {
 } from '@/db/queries';
 import { formatCurrency } from '@/app/lib/utils';
 import { SearchParams } from '@/app/lib/types';
+import Visualizer from '../components/visualizer';
 
 export default function HomePage() {
   return (
@@ -48,7 +49,7 @@ async function Hero() {
 
   return (
     <section className="bg-neutral-50 pt-12">
-      <h1 className="text-center text-3xl font-extrabold">Find your car</h1>
+      <h1 className="text-center text-3xl font-extrabold">Find your car with Voice AI</h1>
       <div className="mx-auto mt-6 grid max-w-4xl grid-cols-1 items-center justify-center gap-4 md:flex md:flex-row md:gap-12">
         <div className="flex items-center justify-center gap-1.5">
           <Icons.checkCircle className="size-5 shrink-0 text-green-600" />
@@ -65,12 +66,15 @@ async function Hero() {
           </span>
         </div>
       </div>
-      <div className="mt-5 hidden md:block">
+      <div className="mt-3 md:block items-center justify-center">
         <Suspense fallback={<SearchFormSkeleton />}>
-          <SearchForm locations={locations} />
+          {/* <SearchForm locations={locations} /> */}
+          <center>
+            <Visualizer />
+          </center>
         </Suspense>
       </div>
-      <div className="mt-14 overflow-x-hidden">
+      <div className="mt-3 overflow-x-hidden">
         <LogoSlider />
       </div>
     </section>

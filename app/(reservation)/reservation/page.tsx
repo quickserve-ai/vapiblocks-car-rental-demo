@@ -231,17 +231,9 @@ export default async function ReservationPage({
           <footer className="mx-auto w-full max-w-none px-5 sm:max-w-[90%] sm:px-0 xl:max-w-8xl">
             <div>
               <p className="text-sm text-neutral-600">
-                Built by{' '}
+                The source code is available on{' '}
                 <a
-                  href={siteConfig.author.url}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <strong>eduamdev</strong>
-                </a>
-                . The source code is available on{' '}
-                <a
-                  href={`${siteConfig.links.github}/carhive`}
+                  href="https://github.com/cameronking4/vapiblocks-carhive"
                   target="_blank"
                   rel="noreferrer"
                 >
