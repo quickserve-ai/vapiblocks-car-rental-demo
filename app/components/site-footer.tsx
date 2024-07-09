@@ -74,12 +74,8 @@ export function SiteFooter() {
         </div>
         <div className="mt-14 lg:mt-16">
           <p className="text-sm text-neutral-600">
-            Built by{' '}
-            <a href={siteConfig.author.url} target="_blank" rel="noreferrer">
-              <strong>eduamdev</strong>
-            </a>
-            . The source code is available on{' '}
-            <a href={`${githubUrl}/carhive`} target="_blank" rel="noreferrer">
+            The source code is available on{' '}
+            <a href="https://github.com/cameronking4/vapiblocks-car-rental-demo" target="_blank" rel="noreferrer">
               <strong>GitHub</strong>
             </a>
             .

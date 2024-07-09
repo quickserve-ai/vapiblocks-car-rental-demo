@@ -66,7 +66,7 @@ async function Hero() {
           </span>
         </div>
       </div>
-      <div className="mt-3 md:block items-center justify-center">
+      <div className="mt-3 items-center justify-center md:block">
         <Suspense fallback={<SearchFormSkeleton />}>
           {/* <SearchForm locations={locations} /> */}
           <center>

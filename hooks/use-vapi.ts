@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import Vapi from '@vapi-ai/web';
+import axios from 'axios';
 
 const publicKey = process.env.NEXT_PUBLIC_VAPI_PUBLIC_KEY || ""; // Replace with your actual public key
 const assistantId = process.env.NEXT_PUBLIC_VAPI_ASSISTANT_ID || ""; // Replace with your actual assistant ID
@@ -31,7 +32,7 @@ const useVapi = () => {
         setVolumeLevel(volume);
       });
 
-      vapiInstance.on('message', (message: any) => {
+      vapiInstance.on('message', async (message: any) => {
         if (message.type === 'transcript') {
           setConversation((prev) => {
             const timestamp = new Date().toLocaleTimeString();
@@ -79,14 +80,17 @@ const useVapi = () => {
           });
         }
 
-        if (message.type === 'function-call' && message.functionCall.name === 'changeUrl') {
-          const command = message.functionCall.parameters.url.toLowerCase();
-          console.log(command);
-          // const newUrl = routes[command];
-          if (command) {
-            window.location.href = command;
-          } else {
-            console.error('Unknown route:', command);
+        if (message.type === 'function-call' && message.functionCall.name === 'findCar') {
+          const { location, checkInDate, checkInTime, carType } = message.functionCall.parameters;
+          try {
+            const response = await axios.post('/api/vapi/findCar', { location, checkInDate, checkInTime, carType });
+            if (response.data.url) {
+              window.location.href = response.data.url;
+            } else {
+              console.error('No URL returned from findCar API');
+            }
+          } catch (error) {
+            console.error('Error finding car:', error);
           }
         }
       });
