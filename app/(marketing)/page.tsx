@@ -118,14 +118,15 @@ function BodyStyleCarExplorer() {
                         {name}
                       </span>
                     </div>
-                    <CloudinaryImage
+                    <img src="/image-placeholder.jpg" alt={''} className='w-full h-full'/>
+                    {/* <CloudinaryImage
                       priority
                       src={imageUrl}
                       alt={name}
                       width={250}
                       height={141}
                       className="rounded-2xl"
-                    />
+                    /> */}
                   </div>
                 );
               })}
@@ -165,13 +166,14 @@ async function DestinationCarExplorer() {
             >
               <div className="size-full group-hover:[&_img]:opacity-50">
                 <AspectRatio ratio={1 / 1}>
-                  <CloudinaryImage
+                  <img src="/image-placeholder.jpg" alt={''} className='w-full h-full'/>
+                  {/* <CloudinaryImage
                     src={image_url}
                     alt={name}
                     fill
                     sizes="(max-width: 549px) 100vw, (max-width: 1127px) 50vw, 25vw"
                     className="size-full rounded-2xl border object-cover object-center transition-opacity duration-150"
-                  />
+                  /> */}
                 </AspectRatio>
               </div>
               <div className="mt-3">
@@ -251,13 +253,14 @@ async function Testimonials() {
                   “{testimonial.comment}”
                 </blockquote>
                 <figcaption className="mt-6 flex items-center justify-start gap-5">
-                  <CloudinaryImage
+                  {/* <CloudinaryImage
                     src={testimonial.image_url}
                     alt={testimonial.name}
                     height={40}
                     width={40}
                     className="size-10 rounded-full border bg-white object-cover object-center"
-                  />
+                  /> */}
+                  <img className="size-10 rounded-full border bg-white object-cover object-center" src="/image-placeholder.jpg" alt={''} />
                   <div>
                     <p className="text-sm font-semibold">{testimonial.name}</p>
                     <p className="mt-1 text-sm text-neutral-600">

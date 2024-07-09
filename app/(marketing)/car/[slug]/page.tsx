@@ -68,13 +68,14 @@ export default async function CarPage({ params }: CarPageProps) {
                 </div>
               </div>
               <div className="flex flex-col justify-self-end">
-                <CloudinaryImage
+                {/* <CloudinaryImage
                   src={car.image_url}
                   alt={car.name}
                   height={48}
                   width={85}
                   priority
-                />
+                /> */}
+                <img src="/image-placeholder.jpg" alt={''} className='h-40'/>
               </div>
             </div>
             <Separator decorative orientation="horizontal" className="my-6" />

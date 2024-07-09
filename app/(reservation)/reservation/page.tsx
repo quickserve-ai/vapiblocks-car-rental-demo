@@ -163,14 +163,15 @@ export default async function ReservationPage({
             <div className="mb-10 mt-4 normal-nums md:mb-20 md:mt-0">
               <div className="sticky top-[calc(var(--site-header-height)_+_160px)] rounded-xl md:border md:p-6">
                 <div className="flex flex-row gap-x-5">
-                  <CloudinaryImage
+                  {/* <CloudinaryImage
                     src={car.image_url}
                     alt={car.name}
                     className="h-[36px] w-[64px] shrink-0 grow-0"
                     height={36}
                     width={64}
                     priority
-                  />
+                  /> */}
+                  <img src="/image-placeholder.jpg" alt={''} className='w-34 h-64'/>
                   <div className="grid grid-cols-1 grid-rows-1 items-start justify-between">
                     <div>
                       <span className="text-[13px] text-neutral-600">

@@ -11,6 +11,7 @@ import { Icons } from '@/app/components/icons';
 import { getCarBySlug } from '@/db/queries';
 import { cn, formatCurrency } from '@/app/lib/utils';
 import { CloudinaryImage } from '@/app/components/cloudinary-image';
+import Image from "next/image";
 
 interface CarCardProps {
   index: number;
@@ -67,13 +68,7 @@ export async function CarCard({ index, slug }: CarCardProps) {
       </CardHeader>
       <CardContent>
         <div className="flex items-center justify-center py-4">
-          <CloudinaryImage
-            src={image_url}
-            alt={name}
-            height={72}
-            width={128}
-            priority={index < 8}
-          />
+        <img src="/image-placeholder.jpg" alt={''} className='w-full h-25'/>
         </div>
         <div className="mx-auto mt-8 flex max-w-[220px] items-center justify-between gap-x-1.5">
           <p className="text-sm text-neutral-600">{transmission}</p>
