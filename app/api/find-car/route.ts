@@ -1,21 +1,48 @@
 // app/api/vapi/findCar/route.ts
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
+import axios from 'axios';
+
+async function findCar({ location, checkInDate, checkInTime, carType }: { location: string; checkInDate: string; checkInTime: string; carType: string }) {
+  // Construct the URL
+  console.log(location, checkInDate, checkInTime, carType)
+  const searchUrl = `https://vapiblocks-carhive.vercel.app/?location=${encodeURIComponent(location)}&carType=${encodeURIComponent(carType)}`;
+  return { url: searchUrl };
+}
 
 export async function POST(request: NextRequest) {
-  const { location, checkInDate, checkInTime, carType } = await request.json();
-
-  if (!location || !checkInDate || !checkInTime || !carType) {
-    return NextResponse.json({ message: 'Missing required fields' }, { status: 400 });
-  }
-
   try {
-    // Construct the URL or perform the logic needed to find the car
-    const searchUrl = `https://vapiblocks-carhive.vercel.app/findCar?location=${encodeURIComponent(location)}&checkInDate=${encodeURIComponent(checkInDate)}&checkInTime=${encodeURIComponent(checkInTime)}&carType=${encodeURIComponent(carType)}`;
-
-    // Respond with the constructed URL
-    return NextResponse.json({ message: 'URL created successfully', url: searchUrl });
+    const { message } = await request.json();
+    console.log(message);
+    if (message.type === 'function-call' && message.functionCall) {
+      const { parameters } = message.functionCall;
+      
+      const result = await findCar(parameters);
+      const jsonResponse = NextResponse.json({ result: "The URL was created successfully.", response: result }, { status: 200 });
+      jsonResponse.headers.set('Access-Control-Allow-Origin', '*');
+      jsonResponse.headers.set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
+      jsonResponse.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+      return jsonResponse;
+    } else {
+      const jsonResponse = NextResponse.json({ message: `Unhandled message type: ${message.type}` }, { status: 400 });
+      jsonResponse.headers.set('Access-Control-Allow-Origin', '*');
+      jsonResponse.headers.set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
+      jsonResponse.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+      return jsonResponse;
+    }
   } catch (error) {
-    return NextResponse.json({ message: 'Internal Server Error', error: JSON.stringify(error, null, 2) }, { status: 500 });
+    console.error('Error processing request:', error);
+    const jsonResponse = NextResponse.json({ message: error }, { status: 500 });
+    jsonResponse.headers.set('Access-Control-Allow-Origin', '*');
+    jsonResponse.headers.set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
+    jsonResponse.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    return jsonResponse;
   }
+}
+
+export async function OPTIONS() {
+  const response = NextResponse.json({}, { status: 200 });
+  response.headers.set('Access-Control-Allow-Origin', '*');
+  response.headers.set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
+  response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  return response;
 }
