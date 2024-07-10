@@ -7,6 +7,7 @@ import './globals.css';
 import { fontSans } from '@/app/lib/fonts';
 import { absoluteUrl, cn } from '@/app/lib/utils';
 import { siteConfig } from '@/config/site';
+import FloatyExample from './components/floaty';
 
 export const metadata: Metadata = {
   metadataBase: new URL(absoluteUrl('/')),
@@ -81,6 +82,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <html lang="en" className={fontSans.variable}>
         <body>
           <div className="relative flex flex-col">{children}</div>
+          <FloatyExample />
           <Toaster />
         </body>
       </html>

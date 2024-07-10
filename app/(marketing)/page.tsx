@@ -23,6 +23,17 @@ import { formatCurrency } from '@/app/lib/utils';
 import { SearchParams } from '@/app/lib/types';
 import Visualizer from '../components/visualizer';
 
+const allowedlocations = [
+  { city: "Barcelona", country: "Spain" },
+  { city: "Cancún", country: "México" },
+  { city: "Paris", country: "France" },
+  { city: "NYC", country: "USA" },
+  { city: "Rome", country: "Italy" },
+  { city: "Sydney", country: "Australia" },
+  { city: "Tokyo", country: "Japan" },
+];
+
+
 export default function HomePage() {
   return (
     <>
@@ -48,23 +59,17 @@ async function Hero() {
   const locations = await getLocations();
 
   return (
-    <section className="bg-neutral-50 pt-12">
-      <h1 className="text-center text-3xl font-extrabold">Find your car with Voice AI</h1>
+    <section className="z-50 bg-neutral-50 pt-12">
+      <h1 className="text-center text-4xl font-medium">Rent a Car with Voice AI</h1>
       <div className="mx-auto mt-6 grid max-w-4xl grid-cols-1 items-center justify-center gap-4 md:flex md:flex-row md:gap-12">
-        <div className="flex items-center justify-center gap-1.5">
-          <Icons.checkCircle className="size-5 shrink-0 text-green-600" />
-          <span className="text-sm text-neutral-900">No hidden fees.</span>
-        </div>
-        <div className="flex items-center justify-center gap-1.5">
-          <Icons.checkCircle className="size-5 shrink-0 text-green-600" />
-          <span className="text-sm text-neutral-900">Transparent pricing.</span>
-        </div>
-        <div className="flex items-center justify-center gap-1.5">
-          <Icons.checkCircle className="size-5 shrink-0 text-green-600" />
-          <span className="text-sm text-neutral-900">
-            Flexible cancellations.
-          </span>
-        </div>
+      {allowedlocations.map((location, index) => (
+      <div key={index} className="flex items-center justify-center gap-1.5">
+        <Icons.checkCircle className="size-5 shrink-0 text-green-600" />
+        <span className="text-sm text-neutral-900">
+          {location.city}, {location.country}
+        </span>
+      </div>
+    ))}
       </div>
       <div className="mt-3 items-center justify-center md:block">
         <Suspense fallback={<SearchFormSkeleton />}>
@@ -95,7 +100,7 @@ function BodyStyleCarExplorer() {
     <section className="border-t pt-10">
       <div className="mx-auto w-full max-w-none px-5 sm:max-w-[90%] sm:px-0 2xl:max-w-8xl">
         <h2 className="text-2xl font-bold">Popular Rental Car Choices</h2>
-        <div className="relative mt-8 before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-[5%] before:bg-gradient-to-r before:from-white before:content-[''] after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-[5%] after:bg-gradient-to-l after:from-white after:content-['']">
+        <div className="before:z-5 after:z-5 relative mt-8 before:absolute before:left-0 before:top-0 before:h-full before:w-[5%] before:bg-gradient-to-r before:from-white before:content-[''] after:absolute after:right-0 after:top-0 after:h-full after:w-[5%] after:bg-gradient-to-l after:from-white after:content-['']">
           <ScrollArea>
             <div className="mb-3 whitespace-nowrap p-[2px]">
               {bodyStyles.map(({ slug, name }) => {
@@ -113,11 +118,11 @@ function BodyStyleCarExplorer() {
                           [SearchParams.BODY_STYLE]: slug,
                         },
                       }}
-                      className="absolute inset-0 z-20 rounded-2xl border"
+                      className="z-5 absolute inset-0 rounded-2xl border"
                     >
                       <span className="sr-only">{name}</span>
                     </Link>
-                    <div className="absolute left-2.5 top-2.5 z-10 flex items-center justify-center leading-none">
+                    <div className="z-5 absolute left-2.5 top-2.5 flex items-center justify-center leading-none">
                       <span className="rounded-[5px] border bg-white px-2.5 py-1.5 text-sm font-semibold leading-none text-neutral-800">
                         {name}
                       </span>
@@ -200,7 +205,7 @@ function Features() {
   return (
     <section className="mt-10 border-t bg-neutral-50">
       <div className="mx-auto max-w-none px-5 py-14 sm:max-w-[90%] sm:px-0 lg:max-w-4xl">
-        <h2 className="text-center text-2xl font-bold">
+        <h2 className="text-center text-2xl font-medium">
           Discover Why We Stand Out
         </h2>
         <div className="mt-12 grid grid-cols-1 items-center justify-center gap-8 md:grid-cols-3">
@@ -248,7 +253,7 @@ async function Testimonials() {
   return (
     <section className="border-t py-12">
       <div className="mx-auto max-w-none px-5 sm:max-w-[90%] sm:px-0 2xl:max-w-8xl">
-        <h2 className="text-center text-2xl font-bold">Driven by Feedback</h2>
+        <h2 className="text-center text-2xl font-medium">Driven by Feedback</h2>
         <div className="mt-4 columns-1 sm:columns-2 lg:columns-4">
           {testimonials.map((testimonial) => (
             <div key={testimonial.id} className="pt-4">
@@ -286,7 +291,7 @@ function CarExplorer() {
     <section className="border-t bg-white py-16">
       <div className="mx-auto max-w-none px-5 sm:max-w-[90%] sm:px-0 2xl:max-w-8xl">
         <div className="flex flex-col items-start justify-between gap-x-6 gap-y-9 md:flex-row md:items-center">
-          <h2 className="text-2xl font-bold leading-9">
+          <h2 className="text-2xl font-semibold leading-9">
             <p>Your Journey Begins Here.</p>
             <p>Dive into Endless Possibilities!</p>
           </h2>

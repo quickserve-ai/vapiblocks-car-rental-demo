@@ -82,17 +82,20 @@ const useVapi = () => {
 
         if (message.type === 'function-call' && message.functionCall.name === 'findCar') {
           const { location, checkInDate, checkInTime, carType } = message.functionCall.parameters;
+          console.log(location, checkInDate, checkInTime, carType);
           try {
-            const response = await axios.post('/api/vapi/findCar', { location, checkInDate, checkInTime, carType });
-            if (response.data.url) {
-              window.location.href = response.data.url;
-            } else {
-              console.error('No URL returned from findCar API');
-            }
+            const baseUrl = 'https://cardemo.vapiblocks.com';
+            const searchParams = new URLSearchParams({
+              location: encodeURIComponent(location),
+              checkin: encodeURIComponent(`${checkInDate}`),
+              carType: encodeURIComponent(carType)
+            });
+            const url = `${baseUrl}?${searchParams.toString()}`;
+            window.location.href = url;
           } catch (error) {
-            console.error('Error finding car:', error);
+            console.error('Error constructing URL:', error);
           }
-        }
+        }        
       });
 
       vapiInstance.on('error', (e: Error) => {

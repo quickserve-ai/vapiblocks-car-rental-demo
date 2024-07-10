@@ -1,9 +1,12 @@
 # CarHive
 
-A car rental website built with **Next.js (App Router)**.
+A car rental website built with **Next.js (App Router)**, pre-configured with VapiBlocks.
 
-> **Warning**
-> This app is a work in progress.
+Add you Vapi Assistant ID from Vapi AI dashboard into your `.env` file. 
+```bash
+NEXT_PUBLIC_VAPI_PUBLIC_KEY=
+NEXT_PUBLIC_VAPI_ASSISTANT_ID=
+```
 
 ![opengraph-image](https://github.com/eduamdev/car-rental-react/assets/35645733/f6c831fc-3992-4972-9c31-2c2964a55b56)
 

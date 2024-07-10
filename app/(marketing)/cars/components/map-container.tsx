@@ -17,7 +17,7 @@ export async function MapContainer() {
   const locations = await getLocations();
 
   return (
-    <div className="sticky top-[var(--header-gap)] z-10 basis-auto">
+    <div className="z-1 sticky top-[var(--header-gap)] basis-auto">
       <DynamicMap locations={locations} />
     </div>
   );
