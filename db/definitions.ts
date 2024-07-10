@@ -7,10 +7,6 @@ export type Testimonial = {
 };
 
 export type Location = {
-  [x: string]: ReactNode;
-  [x: string]: ReactNode;
-  city: ReactNode;
-  country: ReactNode;
   id: string;
   name: string;
   slug: string;
