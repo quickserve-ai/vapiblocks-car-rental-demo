@@ -87,7 +87,7 @@ const useVapi = () => {
             const baseUrl = 'https://cardemo.vapiblocks.com/cars';
             const searchParams = new URLSearchParams({
               location: encodeURIComponent(location),
-              checkin: encodeURIComponent(`${checkInDate}`),
+              checkin: encodeURIComponent(`${checkInDate}T07%3A00%3A00.000Z`),
               carType: encodeURIComponent(carType)
             });
             const url = `${baseUrl}?${searchParams.toString()}`;
