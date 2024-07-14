@@ -84,7 +84,7 @@ const useVapi = () => {
           const { location, checkInDate, checkInTime, carType } = message.functionCall.parameters;
           console.log(location, checkInDate, checkInTime, carType);
           try {
-            const baseUrl = 'https://cardemo.vapiblocks.com';
+            const baseUrl = 'https://cardemo.vapiblocks.com/cars';
             const searchParams = new URLSearchParams({
               location: encodeURIComponent(location),
               checkin: encodeURIComponent(`${checkInDate}`),
